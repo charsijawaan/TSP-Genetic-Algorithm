@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>DSA Project</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+        
+        input,
+        button {
+            display: block;
+            margin: 45px 80px;
+            width: 200px;
+            height: 20px;
+            border-radius: 3px;
+            border: 1px solid #cfcfcf;
+            padding: 2px;
+        }
+        
+        button {
+            background-color: #222222;
+            color: #1ce234;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="float: left;">
+        <canvas id="canvas" width="500" height="400" style="background-color: #222222;"></canvas>
+    </div>
+    <div style="float: left;">
+        <form action="#">
+            <input type="number" id="numCities" placeholder="No. of Cities" required>
+            <input type="number" id="popSize" placeholder="Popultaion Size" required>
+            <input type="number" id="mutationRate" placeholder="Mutation Rate" required>
+            <input type="number" id="maxGen" placeholder="Max Generations" required>
+            <button type="submit" onclick="onClick()">Run GA</button>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="Helpers.js"></script>
+    <script type="text/javascript" src="City.js"></script>
+    <script type="text/javascript" src="Population.js"></script>
+    <script type="text/javascript" src="Individual.js"></script>
+    <script type="text/javascript" src="Main.js"></script>
+    <script type="text/javascript">
+        function onClick() {
+            var numCities = document.getElementById('numCities').value;
+            var popSize = document.getElementById('popSize').value;
+            var mutationRate = document.getElementById('mutationRate').value;
+            var maxGen = document.getElementById('maxGen').value;
+            // Validation for input fields
+            if (numCities.length == 0 || popSize.length == 0 ||
+                mutationRate.length == 0 || maxGen == 0) {
+                alert('Fill all fields to continue');
+            } else {
+                main(popSize, mutationRate, maxGen, numCities);
+            }
+        }
+
+        // If the browser is chrome then append ?# at the end of url
+        if (navigator.userAgent.indexOf("Chrome") != -1) {
+            var url = window.location.href;
+            if (url[url.length - 1] == 'l') {
+                url = url + '?#';
+                window.location.href = url;
+            }
+        }
+    </script>
+</body>
+
+</html>
